@@ -141,8 +141,6 @@ app.post("/login", async (req, res) => {
       user.token = token;
       user.password = undefined; //making password not send to db
 
-      //send token in cookie
-      //cookie section
       const options = {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
@@ -150,7 +148,6 @@ app.post("/login", async (req, res) => {
       res.status(200).cookie("token", token, options).json({
         success: true,
         token,
-        user,
       });
     }
   } catch (error) {
