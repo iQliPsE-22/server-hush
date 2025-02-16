@@ -132,7 +132,12 @@ app.post("/login", async (req, res) => {
     //match the password
     if (user && (await bcrypt.compare(password, user.password))) {
       const token = jwt.sign(
-        { id: user._id },
+        {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          profilePicture: user.profilePicture,
+        },
         "shhhh", //process.env.jwtsecret
         {
           expiresIn: "2h",
